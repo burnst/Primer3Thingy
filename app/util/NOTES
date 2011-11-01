@@ -1,0 +1,16 @@
+# making primer sets for a fluidigm access array
+# Adam DeLuca
+# CLCG - The University of Iowa
+# 4-12-11
+
+# requires UCSC mysql db with the refFlat and snp13x tables
+# input: a bed file of the regions to validate
+# i.e.
+#chr14	31346845	31346846
+
+cat input.bed | perl getOverlappingExons.pl > primer3.input
+
+primer3-2.2.3/src/primer3_core primer3.input | egrep 'SEQUENCE_ID|PRIMER_PAIR_NUM_RETURNED|PRIMER_LEFT_0_SEQUENCE|PRIMER_RIGHT_0_SEQUENCE' | perl -pe 's/PRIMER.+=/\t/; s/SEQ.+=/\n/; chomp' > primer3.output.primers
+
+# add the fluidigm CS linkers
+cat *primers | awk '{if($2==1) print $1"\tACACTGACGACATGGTTCTACA"$3"\tTACGGTAGCAGAGACTTGGTCT"$4; else print $1}' > fluidigm_primer_designs.txt
