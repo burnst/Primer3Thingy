@@ -1,0 +1,24 @@
+#{extends 'main.html' /}
+
+<h1>Application Bootstrap</h1>
+
+<p>This page will bootstrap the state of the database by loading in lookup data and other instances
+that are important to get the dispatch application started and up and running so that you can log
+in and use, test, and enhance the application.</p>
+
+<p>This expects you to have mongodb installed and running on your development box.  It also expects
+to be able to contact the campus IDW during account setup, so make sure you hooked up to the VPN
+if you are running remotely. The following database objects will be setup by this controller.</p>
+
+
+<ol>
+    <li><span style="color:#c00">the "p3thingy" database will be deleted!</span></li>
+    <li>a "p3thingy" database will be created</li>
+</ol>
+
+
+<div class="row">
+<div class="well span10" style="padding-bottom: 0px; padding-top:5px;">
+<h3><a href="/Bootstrapper/initializeLocalMysqlDB">Initialize MySQL Database</a></h3>
+</div>
+</div>
